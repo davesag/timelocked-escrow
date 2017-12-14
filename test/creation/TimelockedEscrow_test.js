@@ -1,11 +1,11 @@
 const IdentityOwner = artifacts.require('./TimelockedEscrow.sol')
 
 contract('TimelockedEscrow', (accounts) => {
-  const punter = accounts[2]
+  const [superuser] = accounts
 
-  it('is owned by punter', () => IdentityOwner.deployed()
+  it('is owned by superuser', () => IdentityOwner.deployed()
     .then(instance => instance.owner())
     .then((owner) => {
-      assert.equal(owner, punter, `Expected the owner to be '${punter}'`)
+      assert.equal(owner, superuser, `Expected the owner to be '${superuser}'`)
     }))
 })

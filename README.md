@@ -4,9 +4,20 @@ Smart contracts that allow an `Identity Owner` to stake `KEY` in a `Timelocked E
 
 ## About
 
-_to be filled getting_started
+### Definitions
 
-_add a nice diagram_
+* `SKF` — The SelfKey Foundation.
+* `KEY` — an ERC20 token managed by the SelfKey Foundation.
+* `Identity Owner` — a party wishing to obtain services from a `Service Provider`, within a defined `marketplace`.
+* `Service Provider` – a party that provides services to an `Identity Owner` as part of an overall `marketplace`.
+* `marketplace` – a collection of whitelisted `Service Providers` with an associated `Timelocked Escrow`.
+* `Timelocked Escrow` – a vault that holds `KEY` for an `Identity Owner` for a defined time period, and which holds a whitelist of `Service Providers` to whom the `Identity Owner` can transfer `KEY`.
+
+An `Identity Owner` that holds an amount of `KEY` wanting to obtain services from a participating `Service Provider` within a defined marketplace is required to deposit `KEY` in a `Timelocked Escrow` that has whitelisted that `Service Provider`.
+
+### Interactions
+
+See the attached [`Staked Owner Flow`](staked_owner_flow.pdf) PDF file.
 
 ## Development
 
