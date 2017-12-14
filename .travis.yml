@@ -1,0 +1,21 @@
+dist: trusty
+
+language: node_js
+
+node_js:
+  - "9.2.1"
+
+install:
+  - npm install -g truffle
+  - npm install
+
+cache:
+  directories:
+    - node_modules
+
+script:
+  - npm run lint
+  - npm test
+
+# notifications:
+#   slack: to be filled in
