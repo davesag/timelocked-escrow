@@ -3,13 +3,11 @@ dist: trusty
 language: node_js
 
 node_js:
-  - "9.2.0"
+  - "9.2.1"
 
 install:
   - npm install -g truffle
   - npm install
-  - npm run testrpc &
-  - truffle version
 
 cache:
   directories:
