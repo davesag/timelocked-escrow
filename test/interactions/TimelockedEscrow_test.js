@@ -4,18 +4,22 @@ const faker = require('faker')
 
 const assertThrows = require('../utils/assertThrows')
 
-const IdentityOwner = artifacts.require('./IdentityOwner.sol')
+const TimelockedEscrow = artifacts.require('./TimelockedEscrow.sol')
 
-contract('IdentityOwner', () => {
+contract('TimelockedEscrow', () => {
   let io
   let owner
 
   before(async () => {
-    io = await IdentityOwner.deployed()
+    io = await TimelockedEscrow.deployed()
     owner = await io.owner()
   })
 
-  context('what are we testing?', () => {
+  context('whitelist', () => {
+    // some excellent tests
+  })
+
+  context('unwhitelist', () => {
     // some excellent tests
   })
 })
