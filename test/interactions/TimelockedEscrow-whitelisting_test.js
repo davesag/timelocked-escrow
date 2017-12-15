@@ -1,14 +1,12 @@
 // ref https://medium.com/level-k/testing-smart-contracts-with-truffle-7849b3d9961
 
-const faker = require('faker')
-
 const assertThrows = require('../utils/assertThrows')
 const { getLog } = require('../utils/txHelpers')
 
 const TimelockedEscrow = artifacts.require('./TimelockedEscrow.sol')
 
 contract('TimelockedEscrow', (accounts) => {
-  const [owner, punter, serviceProvider] = accounts
+  const [punter, serviceProvider] = accounts.slice(1)
 
   let escrow
 
