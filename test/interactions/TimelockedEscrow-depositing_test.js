@@ -35,6 +35,8 @@ contract('TimelockedEscrow', (accounts) => {
         await assertThrows(escrow.deposit(0, { from: punter }))
       })
 
+      // negative numbers become massive +ve numbers.
+      // -1 javascript becomes 1.157920892373162e+77 due to conversion to unsigned int.
       it('punter can\'t deposit negative KEY', async () => {
         await assertThrows(escrow.deposit(-1, { from: punter }))
       })
@@ -48,10 +50,49 @@ contract('TimelockedEscrow', (accounts) => {
       const tx = await escrow.deposit(amount, { from: punter })
       assert.notEqual(getLog(tx, 'KEYDeposited'), null)
     })
+  })
 
-    it('after deposit, punter\'s balance is 0', async () => {
+  context('after successful deposit', () => {
+    it('punter\'s balance is 0', async () => {
       const balance = await token.balanceOf(punter)
       assert.equal(balance.toNumber(), 0)
+    })
+
+    context('hasFunds', () => {
+      it('escrow has funds for the punter', async () => {
+        const hasFunds = await escrow.hasFunds(punter, amount)
+        assert.isTrue(hasFunds)
+      })
+
+      it('escrow has at least that much funds for the punter', async () => {
+        const hasFunds = await escrow.hasFunds(punter, amount - 1)
+        assert.isTrue(hasFunds)
+      })
+
+      it('escrow does not have too many funds for the punter', async () => {
+        const hasFunds = await escrow.hasFunds(punter, amount + 1)
+        assert.isFalse(hasFunds)
+      })
+
+      it('zero address fails', async () => {
+        await assertThrows(escrow.hasFunds(0x0, amount))
+      })
+
+      // negative numbers become massive +ve numbers.
+      // -1 javascript becomes 1.157920892373162e+77 due to conversion to unsigned int.
+      it('negative amount returns false', async () => {
+        const hasFunds = await escrow.hasFunds(punter, -1)
+        assert.isFalse(hasFunds)
+      })
+
+      it('zero amount fails', async () => {
+        await assertThrows(escrow.hasFunds(punter, 0))
+      })
+
+      it('punter with no funds on deposit returns false', async () => {
+        const hasFunds = await escrow.hasFunds(deadbeatPunter, amount)
+        assert.isFalse(hasFunds)
+      })
     })
   })
 })
