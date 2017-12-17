@@ -94,6 +94,10 @@ contract TimelockedEscrow is Ownable {
         _;
     }
 
+    /**
+     *  Ennsure that, if the timelock has not expired, then the recipient is whitelisted.
+     *  @param recipient — The address you are trying to transfer KEY to.
+     */
     modifier transferAllowed(address recipient) {
         if (now < expiry[msg.sender]) {
             require(whitelisted[recipient]);
