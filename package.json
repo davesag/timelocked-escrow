@@ -1,11 +1,10 @@
 {
-  "name": "staked-identity-owner",
+  "name": "timelocked-escrow",
   "version": "1.0.0",
   "description": "Smart contracts that allow an Identity Owner to stake KEY in a time locked escrow so that a 3rd party will offer them a priority service.",
   "main": "truffle.js",
   "directories": {
     "test": "test",
-    "app": "app",
     "contracts": "contracts"
   },
   "engines": {
@@ -31,18 +30,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/identity-development/staked-identity-owner.git"
+    "url": "git+https://github.com/SelfKeyFoundation/timelocked-escrow.git"
   },
   "keywords": [
-    "ethereum"
+    "ethereum",
+    "identity",
+    "selfkey",
+    "selfkey foundation",
+    "staked identity",
+    "escrow"
   ],
   "author": "David Sag <david.sag@industrie.co>",
   "contributors": [
-    "Edmund To <edmund.to@industrie.co>"
+    "Edmund To <edmund.to@industrie.co>",
+    "Carlos Bruguera <cbruguera@gmail.com>"
   ],
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/identity-development/staked-identity-owner/issues"
+    "url": "https://github.com/SelfKeyFoundation/timelocked-escrow/issues"
   },
-  "homepage": "https://github.com/identity-development/staked-identity-owner#readme"
+  "homepage": "https://github.com/SelfKeyFoundation/timelocked-escrow#readme"
 }

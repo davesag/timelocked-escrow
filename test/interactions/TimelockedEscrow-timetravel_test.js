@@ -38,8 +38,8 @@ contract('TimelockedEscrow (after time travel)', (accounts) => {
       assert.notEqual(getLog(tx, 'KEYTransferred'), null)
     })
 
-    it('punter can retreive the rest of their funds', async () => {
-      const tx = await escrow.retreive({ from: punter })
+    it('punter can retrieve the rest of their funds', async () => {
+      const tx = await escrow.retrieve({ from: punter })
       assert.notEqual(getLog(tx, 'KEYRetreived'), null)
     })
 

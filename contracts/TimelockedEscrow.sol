@@ -7,14 +7,14 @@ import 'zeppelin-solidity/contracts/token/ERC20.sol';
 
 
 /**
- *  An address with KEY deposited in the `TimelockedEscrow` can only spend their `KEY`
+ *  An address with `KEY` deposited in the `TimelockedEscrow` can only spend its `KEY`
  *  on whitelisted service providers, but not on anyone else until the expiry time is reached.
  *
- *  When the expiry time is reached they can instruct the escrow to `transfer` their deposited `KEY` to anyone
+ *  When the expiry time is reached it can instruct the escrow to `transfer` its deposited `KEY` to anyone.
  *
- *  An address can only reclaim their `KEY` from the escrow after the allotted expiry time
+ *  An address can only `retrieve` its `KEY` from the escrow after the allotted expiry time.
  *
- *  If the address deposits additional `KEY` in escrow the expiry time is reset to an additional timelockPeriod
+ *  If the address deposits additional `KEY` in escrow the expiry time is reset to an additional timelockPeriod.
  */
 contract TimelockedEscrow is Ownable {
 
@@ -142,7 +142,7 @@ contract TimelockedEscrow is Ownable {
     event KEYTransferred(address from, address to, uint amount);
 
     /**
-     *  Emitted when a an amount of KEY has been retreived by its owner.
+     *  Emitted when a an amount of KEY has been retrieved by its owner.
      *  @param to — The address receiving the KEY.
      *  @param amount — The amount of KEY being sent.
      */
@@ -231,9 +231,9 @@ contract TimelockedEscrow is Ownable {
     }
 
     /**
-     *  Once a timelock has expired the KEY owner may retreive their KEY from the Escrow.
+     *  Once a timelock has expired the KEY owner may retrieve their KEY from the Escrow.
      */
-    function retreive()
+    function retrieve()
         external
         transferAllowed(msg.sender)
         senderHasFundsOnDeposit(1)
