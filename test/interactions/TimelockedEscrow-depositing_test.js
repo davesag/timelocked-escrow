@@ -6,8 +6,8 @@ const { getLog } = require('../utils/txHelpers')
 const MockKey = artifacts.require('./MockKey.sol')
 const TimelockedEscrow = artifacts.require('./TimelockedEscrow.sol')
 
-contract('TimelockedEscrow', (accounts) => {
-  const [owner, punter, serviceProvider, lazyPunter, deadbeatPunter] = accounts
+contract('TimelockedEscrow (core functionality)', (accounts) => {
+  const [punter, serviceProvider, lazyPunter, deadbeatPunter] = accounts.slice(1)
 
   const amount = 10
 

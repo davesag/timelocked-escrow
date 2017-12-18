@@ -1,6 +1,6 @@
 const TimelockedEscrow = artifacts.require('./TimelockedEscrow.sol')
 
-contract('TimelockedEscrow', (accounts) => {
+contract('TimelockedEscrow (basic tests)', (accounts) => {
   const [superuser] = accounts
 
   let escrow

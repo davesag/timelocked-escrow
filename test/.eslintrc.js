@@ -5,7 +5,8 @@ module.exports = {
   globals: {
     artifacts: true,
     contract: true,
-    assert: true
+    assert: true,
+    web3: true
   },
   rules: {
     'padded-blocks': 0,
