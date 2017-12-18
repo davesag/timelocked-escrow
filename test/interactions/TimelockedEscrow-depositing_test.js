@@ -3,7 +3,7 @@
 const assertThrows = require('../utils/assertThrows')
 const { getLog } = require('../utils/txHelpers')
 
-const MockKey = artifacts.require('./MockKey.sol')
+const MockKey = artifacts.require('./MockKEY.sol')
 const TimelockedEscrow = artifacts.require('./TimelockedEscrow.sol')
 
 contract('TimelockedEscrow (core functionality)', (accounts) => {

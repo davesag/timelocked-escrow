@@ -3,7 +3,7 @@
 const timeTravel = require('../utils/timeTravel')
 const { getLog } = require('../utils/txHelpers')
 
-const MockKey = artifacts.require('./MockKey.sol')
+const MockKey = artifacts.require('./MockKEY.sol')
 const TimelockedEscrow = artifacts.require('./TimelockedEscrow.sol')
 
 contract('TimelockedEscrow (after time travel)', (accounts) => {
