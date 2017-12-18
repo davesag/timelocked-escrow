@@ -10,7 +10,7 @@ import 'zeppelin-solidity/contracts/token/ERC20.sol';
  *  An address with KEY deposited in the `TimelockedEscrow` can only spend their `KEY`
  *  on whitelisted service providers, but not on anyone else until the expiry time is reached.
  *
- *  When the expiry time is reached they can instruct the escrow to `transfer` their deposited KEY to anyone
+ *  When the expiry time is reached they can instruct the escrow to `transfer` their deposited `KEY` to anyone
  *
  *  An address can only reclaim their `KEY` from the escrow after the allotted expiry time
  *
@@ -19,7 +19,7 @@ import 'zeppelin-solidity/contracts/token/ERC20.sol';
 contract TimelockedEscrow is Ownable {
 
     uint private constant SECONDS_PER_DAY = 60 * 60 * 24;
-    uint private constant REASONABLE_DAY_LIMIT = 365 * 10; // ten years
+    uint private constant TIMELOCK_UPPER_LIMIT = 365 * 5; // five years
 
     // the number of days during which a deposit can only be spent on a whitelisted address.
     uint public timelockPeriod;
@@ -58,12 +58,12 @@ contract TimelockedEscrow is Ownable {
     }
 
     /**
-     *  Require a number of days that is not silly.
+     *  Require that the number of days is less than 5 years.
      *  Note: Negative value sent from a wallet become massive positive numbers.
-     *  @param number — the number which must not be ridiculous..
+     *  @param number — the number of days.
      */
-    modifier reasonableNumberOfDays(uint number) {
-        require(number <= REASONABLE_DAY_LIMIT);
+    modifier validNumberOfDays(uint number) {
+        require(number <= TIMELOCK_UPPER_LIMIT);
         _;
     }
 
@@ -142,6 +142,13 @@ contract TimelockedEscrow is Ownable {
     event KEYTransferred(address from, address to, uint amount);
 
     /**
+     *  Emitted when a an amount of KEY has been retreived by its owner.
+     *  @param to — The address receiving the KEY.
+     *  @param amount — The amount of KEY being sent.
+     */
+    event KEYRetreived(address to, uint amount);
+
+    /**
      *  TimelockedEscrow constructor.
      *  @param _timelockPeriod — The number of days deposits are to remain locked.
      *  @param _token — The ERC20 token to use as currency. (Injected to ease testing)
@@ -149,7 +156,7 @@ contract TimelockedEscrow is Ownable {
     function TimelockedEscrow(uint _timelockPeriod, ERC20 _token)
         public
         nonZeroNumber(_timelockPeriod)
-        reasonableNumberOfDays(_timelockPeriod)
+        validNumberOfDays(_timelockPeriod)
         nonZeroAddress(_token)
     {
         timelockPeriod = _timelockPeriod;
@@ -217,11 +224,23 @@ contract TimelockedEscrow is Ownable {
         nonZeroNumber(amount)
         transferAllowed(serviceProvider)
         senderHasFundsOnDeposit(amount)
-        senderHasApprovedTransfer(amount)
     {
-        token.transferFrom(msg.sender, serviceProvider, amount);
+        token.transfer(serviceProvider, amount);
         balances[msg.sender] -= amount;
         KEYTransferred(msg.sender, serviceProvider, amount);
+    }
+
+    /**
+     *  Once a timelock has expired the KEY owner may retreive their KEY from the Escrow.
+     */
+    function retreive()
+        external
+        transferAllowed(msg.sender)
+        senderHasFundsOnDeposit(1)
+    {
+        uint amount = balances[msg.sender];
+        token.transfer(msg.sender, amount);
+        KEYRetreived(msg.sender, amount);
     }
 
     /**
@@ -251,7 +270,7 @@ contract TimelockedEscrow is Ownable {
         nonZeroAddress(depositor)
         returns (bool)
     {
-        return expiry[depositor] <= now;
+        return now < expiry[depositor];
     }
 
     /**
