@@ -6,7 +6,7 @@ node_js:
   - "9.3.0"
 
 install:
-  - npm install -g truffle
+  - npm install -g truffle codecov
   - npm install
 
 cache:
@@ -14,8 +14,10 @@ cache:
     - node_modules
 
 script:
-  - npm run lint
-  - npm test
+  - npm run lint:js
+  - npm run lint:sol
+  - npm run test:cov
+  - codecov
 
 # notifications:
 #   slack: to be filled in

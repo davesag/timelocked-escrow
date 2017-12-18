@@ -5,7 +5,7 @@ const { getLog } = require('../utils/txHelpers')
 
 const TimelockedEscrow = artifacts.require('./TimelockedEscrow.sol')
 
-contract('TimelockedEscrow', (accounts) => {
+contract('TimelockedEscrow (whitelisting)', (accounts) => {
   const [punter, serviceProvider] = accounts.slice(1)
 
   let escrow
