@@ -1,24 +1,19 @@
 dist: trusty
-
 language: node_js
-
 node_js:
-  - "9.3.0"
-
+- 9.3.0
 install:
-  - npm install -g truffle codecov
-  - npm install
-
+- npm install -g truffle codecov
+- npm install
 cache:
   directories:
-    - node_modules
-
+  - node_modules
 script:
-  - npm run lint:js
-  - npm run lint:sol
-  - npm run test:cov
-  - codecov
-
+- npm run lint:js
+- npm run lint:sol
+- npm run test:cov
+- codecov
 notifications:
   slack:
-    secure: AfTRdnMb2y0wMnRvBk6KxPQaKO0EtN9bmEau186hEgsM9js1P3XM+xenh24xKazShSLGy/5uLvluhRJBZgXOZhgDUySWH6OiLWQx8vg/skz7ZyAMcmX1pvBFs2zrNOBs3g3FAMaKef4CeLR7jgwBoTtfhBUoPLLTPnnAax8LNoM4A/E5el9GdxkHVOOuB2MH5yBO4m/h86QIpIbgf/0piWoZZks3I2pufyFZNG4MIh7/sLDA+LqvsNEpB9lUZFkrwfbm0+9uyG9OcWCmGqH5k0gSper38/NaoE+xvaP1hVnJYa2IqPM90K+uZvY5yUn2WXT4O6Q1YaxHdSLkOJzWDi5opOWydWiR6+mADAfNikdfRQnnQYVALlzZ1hEqGZ54na4ovtdle23epJrSqlYO+cFsJ94RY4+BzOnnio2YpIr8XJurJ8fke/3XKXQ9d15HFLnOOIm/ZZwH/QeYG2JGy/Erw3VQVbjwFMkooRTAhGJF+U3tVB5WXyrQaw2iTOQa/vcxq1zhTyw8xvPqcgSsZ2rzihKRK8D01S1+7miCcjsN6E1PRm5J0r3jmUiV28Vr+74zRrXD2GNLU9q00wklX5h238oXLu7vVW8Ir4WqS5kvmSL1cG69W8VC6FZ0Wvn0oHG7kiQXcY+5ULGI4zrbyskv/1SURMCR324MDTEavS8=
+    rooms:
+      secure: awo8oLXz7zLSl420DrcYP6uOLh3ORZ5TRa7564iQIeAD9KgC8vaH8bdQ1GbrdqHpiTnciV5Z7x/MmOr/Qk5BUTXotaHQuZXcOUgp3F7K7p639fYpTSSeZUHMz2Sk5Crox0ZL2cj7BaByXN4qSMtIzjhbGnTb0QmnQSMvWog71kZew/mDtDKJr5mZlOcx0iUuH3u4477sl78TENzj0qaOeaKI34Ug1R78c51SYgu6vf6yeqgg5g8Qxrnm9LhHoejR3mcslRSLxkbV/qiPvpjOCC+tWR2093iRS4uFE9IDlfejD/AD2FHds3LcxBfrztjJ5Iy7ZOhwa2pi3ef/Ej8LtNXQz9oM9EY7+E1tMVCdhz4IQcpZEVTDw9UAROvX1OPHC0Uv6Eq8Kx5uLAxg5U0auIpRrYX+1l1CTmSj8nRifCFyJtGa3RIrFUno+gOxmUqNd91+Q9BhikVGPc550/zxbQNIxIvr4RB30IuMhFfWOHBlG0Comeiu+DB1Nfw6mRLeFemWnEKaIDfr3ONnWinPQnWDaFelW728KoZjsgAzoteDtoZoI2eBvzA4y/8Zs8kJEkcF/9J46Ai/Qo3u4SqkrAcCSMUqpZgJjdEX+uLd40stIC760NW8OdNw3grMtWWavq7S68VAdNpFzA6GkJeIh3Mte2g0Ak0bAlmo6rtPkLM=
