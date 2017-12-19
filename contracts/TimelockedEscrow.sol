@@ -95,7 +95,7 @@ contract TimelockedEscrow is Ownable {
     }
 
     /**
-     *  Ennsure that, if the timelock has not expired, then the recipient is whitelisted.
+     *  Ensure that, if the timelock has not expired, then the recipient is whitelisted.
      *  @param recipient — The address you are trying to transfer KEY to.
      */
     modifier transferAllowed(address recipient) {
@@ -146,7 +146,7 @@ contract TimelockedEscrow is Ownable {
      *  @param to — The address receiving the KEY.
      *  @param amount — The amount of KEY being sent.
      */
-    event KEYRetreived(address to, uint amount);
+    event KEYRetrieved(address to, uint amount);
 
     /**
      *  TimelockedEscrow constructor.
@@ -240,7 +240,7 @@ contract TimelockedEscrow is Ownable {
     {
         uint amount = balances[msg.sender];
         token.transfer(msg.sender, amount);
-        KEYRetreived(msg.sender, amount);
+        KEYRetrieved(msg.sender, amount);
     }
 
     /**
