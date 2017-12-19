@@ -10,7 +10,7 @@ contract('TimelockedEscrow (after time travel)', (accounts) => {
   const [punter, serviceProvider] = accounts.slice(1)
 
   const amount = 10
-  const FOURTY_DAYS = 40 * 24 * 60 * 60
+  const FORTY_DAYS = 40 * 24 * 60 * 60
 
   let escrow
   let token
@@ -22,7 +22,7 @@ contract('TimelockedEscrow (after time travel)', (accounts) => {
     await token.freeMoney(punter, amount)
     await token.approve(escrow.address, amount, { from: punter })
     await escrow.deposit(amount, { from: punter })
-    await timeTravel(FOURTY_DAYS)
+    await timeTravel(FORTY_DAYS)
   })
 
   context('areFundsTimelocked', () => {
@@ -40,7 +40,7 @@ contract('TimelockedEscrow (after time travel)', (accounts) => {
 
     it('punter can retrieve the rest of their funds', async () => {
       const tx = await escrow.retrieve({ from: punter })
-      assert.notEqual(getLog(tx, 'KEYRetreived'), null)
+      assert.notEqual(getLog(tx, 'KEYRetrieved'), null)
     })
 
     it('now punter has no funds on deposit', async () => {
