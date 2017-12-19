@@ -4,6 +4,10 @@ const INVALID_OPCODE = 'invalid opcode'
 const OUT_OF_GAS = 'out of gas'
 const REVERT = 'revert'
 
+/**
+ *  assert that a promise throws either an invalidOpcode, outOfGas, or revert error.
+ *  @param promise — The promise to test.
+ */
 const assertThrows = async (promise) => {
   try {
     await promise
