@@ -214,8 +214,8 @@ contract TimelockedEscrow is Ownable {
     }
 
     /**
-     *  Transfer an amout from the sender's Escrow account to a Service Provider.
-     *  @param serviceProvider — The address to transfer the KEY to. Must be a user address not a contract.
+     *  Transfer an amount from the sender's Escrow account to a Service Provider.
+     *  @param serviceProvider — The address to transfer the KEY to.
      *  @param amount — The amount of KEY to transfer.
      */
     function transfer(address serviceProvider, uint amount)
