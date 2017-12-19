@@ -2,7 +2,7 @@
  *  extract the log for a specific event from the supplied transaction
  *  @param tx — The transaction to look into
  *  @param event — The name of the event to look for
- *  @throw if no event matches
+ *  @throws if no event matches
  *  @return the log for the matching event.
  */
 const getLog = (tx, event) => {
@@ -16,7 +16,7 @@ const getLog = (tx, event) => {
  *  @param tx — The transaction to look into
  *  @param event — The name of the event to look for
  *  @param variable — The name of the variable to look at
- *  @throw if no event matches
+ *  @throws if no event matches
  *  @return the address for the matching variable.
  */
 const getAddress = (tx, event, variable) => {
@@ -32,7 +32,7 @@ const getAddress = (tx, event, variable) => {
  *  @param event — The name of the event to look for
  *  @param variable — The name of the variable to look at
  *  @param Contract — The contract to find the instance of.
- *  @throw if no event matches
+ *  @throws if no event matches
  *  @return the address for the matching variable.
  */
 const getContract = (tx, event, variable, Contract) => Contract.at(getAddress(tx, event, variable))
