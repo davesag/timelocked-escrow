@@ -36,13 +36,6 @@ contract MarketplaceManager is Ownable {
     }
 
     /**
-     *  Emitted when the MarketplaceManager is created.
-     *  @param manager — The MarketplaceManager that was created.
-     *  @param token — The ERC20 token being used. (injected to simplify testing)
-     */
-    event MarketplaceManagerCreated(MarketplaceManager manager, ERC20 token);
-
-    /**
      *  Emitted when the Escrow is created.
      *  @param escrow — The created Escrow
      *  @param period — The timelock period (in days) of the created Escrow
@@ -59,7 +52,6 @@ contract MarketplaceManager is Ownable {
         nonZeroAddress(_token)
     {
         token = _token;
-        MarketplaceManagerCreated(this, token);
     }
 
     /**
