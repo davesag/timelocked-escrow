@@ -14,13 +14,14 @@ An Ethereum contract that allows an `Identity Owner` to stake `KEY` in a `Timelo
 * `Identity Owner` — a party wishing to obtain services from a `Service Provider`, within a defined `marketplace`.
 * `Service Provider` – a party that provides services to an `Identity Owner` as part of an overall `marketplace`.
 * `marketplace` – a collection of whitelisted `Service Providers` with an associated `Timelocked Escrow`.
+* `Marketplace Manager` – a contract that can create new `Timelocked Escrow` contracts for `SKF`.
 * `Timelocked Escrow` – a vault that holds `KEY` for an `Identity Owner` for a defined time period, and which holds a whitelist of `Service Providers` to whom the `Identity Owner` can transfer `KEY`.
 
 An `Identity Owner` that holds an amount of `KEY` wanting to obtain services from a participating `Service Provider` within a defined marketplace is required to deposit `KEY` in a `Timelocked Escrow` that has whitelisted that `Service Provider`.
 
 ### Interactions
 
-See the attached [`Staked Owner Flow`](staked_owner_flow.pdf) PDF file.
+See the attached [`Timelocked Escrow Flow`](timelocked_escrow-flow.pdf) PDF file.
 
 ## Development
 

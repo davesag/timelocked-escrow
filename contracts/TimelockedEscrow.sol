@@ -5,6 +5,8 @@ pragma solidity ^0.4.18;
 import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
 import 'zeppelin-solidity/contracts/token/ERC20.sol';
 
+import './MarketplaceManager.sol';
+
 
 /**
  *  An address with `KEY` deposited in the `TimelockedEscrow` can only spend its `KEY`
@@ -19,7 +21,6 @@ import 'zeppelin-solidity/contracts/token/ERC20.sol';
 contract TimelockedEscrow is Ownable {
 
     uint private constant SECONDS_PER_DAY = 60 * 60 * 24;
-    uint private constant TIMELOCK_UPPER_LIMIT = 365 * 5; // five years
 
     // the number of days during which a deposit can only be spent on a whitelisted address.
     uint public timelockPeriod;
@@ -54,16 +55,6 @@ contract TimelockedEscrow is Ownable {
      */
     modifier nonZeroNumber(uint number) {
         require(number > 0);
-        _;
-    }
-
-    /**
-     *  Require that the number of days is less than 5 years.
-     *  Note: Negative value sent from a wallet become massive positive numbers.
-     *  @param number — the number of days.
-     */
-    modifier validNumberOfDays(uint number) {
-        require(number <= TIMELOCK_UPPER_LIMIT);
         _;
     }
 
@@ -106,14 +97,6 @@ contract TimelockedEscrow is Ownable {
     }
 
     /**
-     *  Emitted when the Escrow is created.
-     *  @param escrow — The created Escrow
-     *  @param period — The timelock period (in days) of the created Escrow
-     *  @param token — The ERC20 token being used (injected to simplify testing)
-     */
-    event EscrowCreated(address escrow, uint period, ERC20 token);
-
-    /**
      *  Emitted when a ServiceProvider's address has been whitelisted.
      *  @param serviceProvider — The address that was whitelisted.
      */
@@ -149,19 +132,18 @@ contract TimelockedEscrow is Ownable {
     event KEYRetrieved(address to, uint amount);
 
     /**
-     *  TimelockedEscrow constructor.
+     *  TimelockedEscrow constructor. Can only be invoked by a `MarketplaceManager`.
      *  @param _timelockPeriod — The number of days deposits are to remain locked.
      *  @param _token — The ERC20 token to use as currency. (Injected to ease testing)
      */
     function TimelockedEscrow(uint _timelockPeriod, ERC20 _token)
         public
-        nonZeroNumber(_timelockPeriod)
-        validNumberOfDays(_timelockPeriod)
         nonZeroAddress(_token)
     {
         timelockPeriod = _timelockPeriod;
         token = _token;
-        EscrowCreated(this, timelockPeriod, token);
+        MarketplaceManager manager = MarketplaceManager(msg.sender);
+        owner = manager.owner();
     }
 
     /**
