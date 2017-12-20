@@ -15,12 +15,12 @@
     "zeppelin-solidity": "^1.4.0"
   },
   "devDependencies": {
-    "eslint": "^4.12.1",
+    "eslint": "^4.13.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "faker": "^4.1.0",
     "solhint": "^1.1.9",
-    "solidity-coverage": "^0.4.2"
+    "solidity-coverage": "^0.4.4"
   },
   "scripts": {
     "test": "truffle test",
