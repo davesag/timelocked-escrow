@@ -7,6 +7,7 @@ import 'zeppelin-solidity/contracts/token/ERC20.sol';
 
 import './MarketplaceManager.sol';
 
+
 /**
  *  An address with `KEY` deposited in the `TimelockedEscrow` can only spend its `KEY`
  *  on whitelisted service providers, but not on anyone else until the expiry time is reached.

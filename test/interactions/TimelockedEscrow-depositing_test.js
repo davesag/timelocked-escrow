@@ -32,31 +32,26 @@ contract('TimelockedEscrow (core functionality)', (accounts) => {
     // deadbeat punter has has no money
     context('deadbeat punter', () => {
       it('can\'t deposit KEY', () =>
-        assertThrows(escrow.deposit(amount, { from: deadbeatPunter }))
-      )
+        assertThrows(escrow.deposit(amount, { from: deadbeatPunter })))
     })
 
     // lazy punter has has money but has not approved transfer
     context('lazy punter', () => {
       it('can\'t deposit KEY', () =>
-        assertThrows(escrow.deposit(amount, { from: lazyPunter }))
-      )
+        assertThrows(escrow.deposit(amount, { from: lazyPunter })))
     })
 
     context('invalid amounts', () => {
       it('punter can\'t deposit zero KEY', async () =>
-        assertThrows(escrow.deposit(0, { from: punter }))
-      )
+        assertThrows(escrow.deposit(0, { from: punter })))
 
       // negative numbers become massive +ve numbers.
       // -1 javascript becomes 1.157920892373162e+77 due to conversion to unsigned int.
       it('punter can\'t deposit negative KEY', () =>
-        assertThrows(escrow.deposit(-1, { from: punter }))
-      )
+        assertThrows(escrow.deposit(-1, { from: punter })))
 
       it('punter can\'t deposit more KEY than they approved', () =>
-        assertThrows(escrow.deposit(amount + 1, { from: punter }))
-      )
+        assertThrows(escrow.deposit(amount + 1, { from: punter })))
     })
 
     it('punter can deposit the approved amount of KEY', async () => {
@@ -126,12 +121,10 @@ contract('TimelockedEscrow (core functionality)', (accounts) => {
       })
 
       it('punter can\'t transfer more key than they have deposited', () =>
-        assertThrows(escrow.transfer(serviceProvider, amount + 1, { from: punter }))
-      )
+        assertThrows(escrow.transfer(serviceProvider, amount + 1, { from: punter })))
 
       it('punter can\'t transfer to a non-whitelisted address', () =>
-        assertThrows(escrow.transfer(deadbeatPunter, amount, { from: punter }))
-      )
+        assertThrows(escrow.transfer(deadbeatPunter, amount, { from: punter })))
 
       it('punter can transfer to a whitelisted service provider', async () => {
         const tx = await escrow.transfer(serviceProvider, amount, { from: punter })

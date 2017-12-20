@@ -18,9 +18,7 @@ contract('MarketplaceManager', (accounts) => {
     assert.equal(owner, superuser, `Expected the owner to be '${superuser}'`)
   })
 
-  context('creating with an invalid address', () =>
-    assertThrows(MarketplaceManager.new(0x0, { from: superuser }))
-  )
+  context('creating with an invalid address', () => assertThrows(MarketplaceManager.new(0x0, { from: superuser })))
 
   context('createEscrow', () => {
     const period = 28 // 28 days.

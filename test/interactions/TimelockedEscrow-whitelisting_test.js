@@ -28,8 +28,7 @@ contract('TimelockedEscrow (whitelisting)', (accounts) => {
     })
 
     it('non owner can\'t whitelist a serviceProvider', () =>
-      assertThrows(escrow.whitelist(serviceProvider, { from: punter }))
-    )
+      assertThrows(escrow.whitelist(serviceProvider, { from: punter })))
 
     it('owner can whitelist a serviceProvider', async () => {
       const tx = await escrow.whitelist(serviceProvider)
@@ -46,12 +45,10 @@ contract('TimelockedEscrow (whitelisting)', (accounts) => {
     it('won\'t unwhitelist a zero address', () => assertThrows(escrow.unwhitelist(0x0)))
 
     it('won\'t unwhitelist an address that wasn\'t whitelisted', () =>
-      assertThrows(escrow.unwhitelist(punter))
-    )
+      assertThrows(escrow.unwhitelist(punter)))
 
     it('non owner can\'t whitelist a previously whitelisted serviceProvider', () =>
-      assertThrows(escrow.unwhitelist(serviceProvider, { from: punter }))
-    )
+      assertThrows(escrow.unwhitelist(serviceProvider, { from: punter })))
 
     it('owner can unwhitelist a previously whitelisted serviceProvider', async () => {
       const tx = await escrow.unwhitelist(serviceProvider)
