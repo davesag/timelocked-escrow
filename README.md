@@ -1,5 +1,7 @@
 # Timelocked Escrow
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/SelfKeyFoundation/timelocked-escrow.svg)](https://greenkeeper.io/)
+
 An Ethereum contract that allows an `Identity Owner` to stake `KEY` in a `Timelocked Escrow` so that a `Service Provider` will offer them a priority service.
 
 * `develop` — [![Build Status](https://www.travis-ci.org/SelfKeyFoundation/timelocked-escrow.svg?branch=develop)](https://www.travis-ci.org/SelfKeyFoundation/timelocked-escrow) [![codecov](https://codecov.io/gh/SelfKeyFoundation/timelocked-escrow/branch/develop/graph/badge.svg)](https://codecov.io/gh/SelfKeyFoundation/timelocked-escrow)
