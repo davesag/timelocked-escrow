@@ -1,19 +1,35 @@
 dist: trusty
+
 language: node_js
+
 node_js:
 - 9.3.0
+
+before_install:
+- npm install -g greenkeeper-lockfile@1 truffle codecov
+
 install:
-- npm install -g truffle codecov
 - npm install
+
 cache:
   directories:
   - node_modules
+
+before_script: greenkeeper-lockfile-update
+
 script:
 - npm run lint:js
 - npm run lint:sol
 - npm run test:cov
 - codecov
+
+after_script: greenkeeper-lockfile-upload
+
 notifications:
   slack:
     rooms:
       secure: awo8oLXz7zLSl420DrcYP6uOLh3ORZ5TRa7564iQIeAD9KgC8vaH8bdQ1GbrdqHpiTnciV5Z7x/MmOr/Qk5BUTXotaHQuZXcOUgp3F7K7p639fYpTSSeZUHMz2Sk5Crox0ZL2cj7BaByXN4qSMtIzjhbGnTb0QmnQSMvWog71kZew/mDtDKJr5mZlOcx0iUuH3u4477sl78TENzj0qaOeaKI34Ug1R78c51SYgu6vf6yeqgg5g8Qxrnm9LhHoejR3mcslRSLxkbV/qiPvpjOCC+tWR2093iRS4uFE9IDlfejD/AD2FHds3LcxBfrztjJ5Iy7ZOhwa2pi3ef/Ej8LtNXQz9oM9EY7+E1tMVCdhz4IQcpZEVTDw9UAROvX1OPHC0Uv6Eq8Kx5uLAxg5U0auIpRrYX+1l1CTmSj8nRifCFyJtGa3RIrFUno+gOxmUqNd91+Q9BhikVGPc550/zxbQNIxIvr4RB30IuMhFfWOHBlG0Comeiu+DB1Nfw6mRLeFemWnEKaIDfr3ONnWinPQnWDaFelW728KoZjsgAzoteDtoZoI2eBvzA4y/8Zs8kJEkcF/9J46Ai/Qo3u4SqkrAcCSMUqpZgJjdEX+uLd40stIC760NW8OdNw3grMtWWavq7S68VAdNpFzA6GkJeIh3Mte2g0Ak0bAlmo6rtPkLM=
+
+env:
+  global:
+    secure: gfml0xyA7SNoMsgM3EmnvDixPrWgsMfV2za8R8B5pklAkzjqEjhGIGXHwfK0I0sO7/R6iIWd/i1jqwfkJxxkuTIEiADmbHgw0vtV/TkPe3zDubi17SSLEANVErO+mx0+4HZwDFZkG5XJf0a9dIJx7OqlrgkNTiImvE0JOIFi+bmgMgXQ3JabIA7yGw4Hn8eXQ3d8xMu1u3A60pkcok3AQ7nKJ/cMoK8Jnl3uiahcgYJvOujfJB4x3hLM/WPrvywwXBlXaOiGX2CFkPwC8dmVOZvXfLOh+5ZIxnLyoKb5NkVnQQi4SifXhZonBtrAChnEh2M5GpqfpIREbiVE+Tv2gnYDYIOZ+I6Z8lLAnyuAhktuPcKy8zjNOX2Lesr/8fhz4zrQi+odufMzXF6SFOSV/1EdmXjEIa+z7AAuJORpcxFMxikpKtjXmN8JRQG00LgoGMkhGggoZav91gmO86YRZ/77hiULTYFrbh0voYWWhD267wg393VnQIQ+igg44KWMnfAhkZ3ZQvChDr/L/ItpFdneYJG8sZEff6lUDkfyQqUc4cDx+2fI9l0HnnKHFWA3hb7s1HbcFowvGiGFwVAxkzaScMDlHdWNkr9o/f52mq6NXXuhTu+hTkVSb4Z7jGtfy8ro5jHRvv85au6WTjSm4QgDjpAHw2FtQF/SgX4WLtE=
