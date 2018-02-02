@@ -6,7 +6,7 @@ const { getContract, getLog } = require('../utils/txHelpers')
 const MarketplaceManager = artifacts.require('./MarketplaceManager.sol')
 const TimelockedEscrow = artifacts.require('./TimelockedEscrow.sol')
 
-contract('TimelockedEscrow (whitelisting)', (accounts) => {
+contract('TimelockedEscrow (whitelisting)', accounts => {
   const [punter, serviceProvider] = accounts.slice(1)
   const TWENTY_EIGHT_DAYS = 28
 
@@ -20,14 +20,15 @@ contract('TimelockedEscrow (whitelisting)', (accounts) => {
   })
 
   context('whitelist', () => {
-    it('won\'t whitelist a zero address', () => assertThrows(escrow.whitelist(0x0)))
+    it("won't whitelist a zero address", () =>
+      assertThrows(escrow.whitelist(0x0)))
 
     it('isWhitelisted returns false if the address supplied was not whitelisted', async () => {
       const isWhitelisted = await escrow.isWhitelisted.call(serviceProvider)
       assert.isFalse(isWhitelisted)
     })
 
-    it('non owner can\'t whitelist a serviceProvider', () =>
+    it("non owner can't whitelist a serviceProvider", () =>
       assertThrows(escrow.whitelist(serviceProvider, { from: punter })))
 
     it('owner can whitelist a serviceProvider', async () => {
@@ -42,12 +43,13 @@ contract('TimelockedEscrow (whitelisting)', (accounts) => {
   })
 
   context('unwhitelist', () => {
-    it('won\'t unwhitelist a zero address', () => assertThrows(escrow.unwhitelist(0x0)))
+    it("won't unwhitelist a zero address", () =>
+      assertThrows(escrow.unwhitelist(0x0)))
 
-    it('won\'t unwhitelist an address that wasn\'t whitelisted', () =>
+    it("won't unwhitelist an address that wasn't whitelisted", () =>
       assertThrows(escrow.unwhitelist(punter)))
 
-    it('non owner can\'t whitelist a previously whitelisted serviceProvider', () =>
+    it("non owner can't whitelist a previously whitelisted serviceProvider", () =>
       assertThrows(escrow.unwhitelist(serviceProvider, { from: punter })))
 
     it('owner can unwhitelist a previously whitelisted serviceProvider', async () => {
