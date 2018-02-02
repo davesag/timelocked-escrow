@@ -27,7 +27,7 @@ See the attached [`Timelocked Escrow Flow`](timelocked_escrow-flow.pdf) PDF file
 
 ## Development
 
-The smart contracts are being implemented in Solidity `0.4.18`.
+The smart contracts are being implemented in Solidity `0.4.19`.
 
 ### Prerequisites
 
