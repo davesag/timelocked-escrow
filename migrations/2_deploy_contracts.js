@@ -17,7 +17,8 @@ const migrate = (deployer, network, accounts) => {
   if (isDeveloperNetwork(network) || isTestNetwork(network)) {
     deployer.deploy(MockKEY, { from: superuser }).then(() => {
       console.log('deployed MockKEY', MockKEY.address)
-      return deployer.deploy(MarketplaceManager, MockKEY.address, { from: superuser })
+      return deployer
+        .deploy(MarketplaceManager, MockKEY.address, { from: superuser })
         .then(() => {
           console.log('deployed MarketplaceManager', MarketplaceManager.address)
         })

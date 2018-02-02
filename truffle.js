@@ -18,8 +18,8 @@ module.exports = {
   networks: {
     ropsten: {
       network_id: 3,
-      provider: null,  // TODO: add this
-      from: null,  // TODO: add this
+      provider: null, // TODO: add this
+      from: null, // TODO: add this
       gas: 5000000
     }
   },

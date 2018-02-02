@@ -4,7 +4,7 @@ const assertThrows = require('../utils/assertThrows')
 const MarketplaceManager = artifacts.require('./MarketplaceManager.sol')
 const TimelockedEscrow = artifacts.require('./TimelockedEscrow.sol')
 
-contract('MarketplaceManager', (accounts) => {
+contract('MarketplaceManager', accounts => {
   const [superuser] = accounts
 
   let manager
@@ -18,7 +18,9 @@ contract('MarketplaceManager', (accounts) => {
     assert.equal(owner, superuser, `Expected the owner to be '${superuser}'`)
   })
 
-  context('creating with an invalid address', () => assertThrows(MarketplaceManager.new(0x0, { from: superuser })))
+  context('creating with an invalid address', () =>
+    assertThrows(MarketplaceManager.new(0x0, { from: superuser }))
+  )
 
   context('createEscrow', () => {
     const period = 28 // 28 days.
@@ -47,8 +49,10 @@ contract('MarketplaceManager', (accounts) => {
     context('invalid timelockPeriod', () => {
       const TOO_LONG = 100 * 365 // 100 years
 
-      it('0 period throws an error', () => assertThrows(manager.createEscrow(0)))
-      it('too long period throws an error', () => assertThrows(manager.createEscrow(TOO_LONG)))
+      it('0 period throws an error', () =>
+        assertThrows(manager.createEscrow(0)))
+      it('too long period throws an error', () =>
+        assertThrows(manager.createEscrow(TOO_LONG)))
     })
   })
 })

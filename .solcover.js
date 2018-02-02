@@ -1,5 +1,5 @@
 module.exports = {
-  copyNodeModules: true,
+  copyPackages: ['zeppelin-solidity'],
   skipFiles: [
     'MockKEY.sol'
   ]

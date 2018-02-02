@@ -7,7 +7,7 @@ const MockKey = artifacts.require('./MockKEY.sol')
 const MarketplaceManager = artifacts.require('./MarketplaceManager.sol')
 const TimelockedEscrow = artifacts.require('./TimelockedEscrow.sol')
 
-contract('TimelockedEscrow (after time travel)', (accounts) => {
+contract('TimelockedEscrow (after time travel)', accounts => {
   const [punter, serviceProvider] = accounts.slice(1)
 
   const amount = 10
@@ -31,7 +31,7 @@ contract('TimelockedEscrow (after time travel)', (accounts) => {
   })
 
   context('areFundsTimelocked', () => {
-    it('punter\'s funds are no longer timelocked', async () => {
+    it("punter's funds are no longer timelocked", async () => {
       const areFundsTimelocked = await escrow.areFundsTimelocked(punter)
       assert.isFalse(areFundsTimelocked)
     })
@@ -39,7 +39,9 @@ contract('TimelockedEscrow (after time travel)', (accounts) => {
 
   context('transferring funds', () => {
     it('punter can transfer some KEY to a non-whitelisted address', async () => {
-      const tx = await escrow.transfer(serviceProvider, amount / 2, { from: punter })
+      const tx = await escrow.transfer(serviceProvider, amount / 2, {
+        from: punter
+      })
       assert.notEqual(getLog(tx, 'KEYTransferred'), null)
     })
 
