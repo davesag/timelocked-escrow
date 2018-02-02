@@ -31,7 +31,7 @@ The smart contracts are being implemented in Solidity `0.4.18`.
 
 ### Prerequisites
 
-* [NodeJS](htps://nodejs.org), version 9.3+ (I use [`nvm`](https://github.com/creationix/nvm) to manage Node versions — `brew install nvm`.)
+* [NodeJS](htps://nodejs.org), version 9.5+ (I use [`nvm`](https://github.com/creationix/nvm) to manage Node versions — `brew install nvm`.)
 * [truffle](http://truffleframework.com/), which is a comprehensive framework for Ethereum development. `npm install -g truffle` — this should install Truffle v4+.  Check that with `truffle version`.
 * [Access to the KYC_Chain Jira](https://kyc-chain.atlassian.net)
 
